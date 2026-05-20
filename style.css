@@ -1,1 +1,253 @@
-:root{--bg:#f4f8ff;--card:#fff;--text:#18304f;--muted:#5f718a;--primary:#2563eb;--primary-dark:#1d4ed8;--line:#dbe7ff;--soft:#eaf2ff}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(135deg,#eef6ff,#ffffff);color:var(--text)}button{font-family:inherit;cursor:pointer}.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:14px 6vw}.brand{font-weight:800;color:var(--primary)}nav{display:flex;gap:8px;flex-wrap:wrap}.nav-btn,.secondary,.back,.controls button{border:1px solid var(--line);background:#fff;color:var(--text);border-radius:999px;padding:10px 14px}.nav-btn:hover,.secondary:hover,.back:hover,.controls button:hover{border-color:var(--primary);color:var(--primary)}main{min-height:calc(100vh - 120px)}.page{display:none;padding:56px 7vw}.page.active{display:block}.hero{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr);gap:32px;align-items:center}.eyebrow{font-size:14px;font-weight:700;color:var(--primary);letter-spacing:.04em}.hero h1{font-size:clamp(42px,7vw,76px);line-height:1.05;margin:12px 0}.lead,.section-intro{font-size:18px;line-height:1.75;color:var(--muted);max-width:780px}.primary{border:0;background:var(--primary);color:#fff;border-radius:999px;padding:13px 20px;font-weight:700}.primary:hover{background:var(--primary-dark)}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.hero-card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:30px;box-shadow:0 20px 50px rgba(37,99,235,.12)}.molecule-icon{font-size:62px;background:var(--soft);width:100px;height:100px;border-radius:30px;display:grid;place-items:center}.hero-card ul{line-height:2}.concept-grid,.protein-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:28px 0}.concept-card,.protein-card,.summary-box{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 12px 30px rgba(24,48,79,.06)}.concept-card span{color:var(--primary);font-weight:800}.concept-card p,.protein-card p,.summary-box p{color:var(--muted);line-height:1.7}.center{display:block;margin:30px auto 0}.protein-card{min-height:240px;text-align:left;transition:.18s transform,.18s box-shadow}.protein-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(37,99,235,.16);border-color:#a9c4ff}.protein-card .emoji{font-size:44px}.protein-card h3{font-size:24px;margin:12px 0 8px}.tag{display:inline-block;background:var(--soft);color:var(--primary);border-radius:999px;padding:6px 10px;font-size:13px;font-weight:700}.viewer-layout{display:grid;grid-template-columns:330px minmax(0,1fr);gap:22px;align-items:stretch}.protein-info{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px}.info-box{background:var(--soft);border-radius:18px;padding:16px;margin:20px 0}.controls{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.text-link{color:var(--primary);font-weight:700;text-decoration:none}.viewer-wrap{background:#fff;border:1px solid var(--line);border-radius:24px;padding:14px;min-height:600px}.viewer{width:100%;height:540px;border-radius:18px;background:#f7fbff;overflow:hidden}.viewer-help{color:var(--muted);font-size:14px;text-align:center}.back{margin-bottom:18px}footer{text-align:center;color:var(--muted);padding:24px}@media(max-width:860px){.hero,.viewer-layout{grid-template-columns:1fr}.concept-grid,.protein-grid{grid-template-columns:1fr}.topbar{align-items:flex-start;gap:10px;flex-direction:column}.page{padding:36px 5vw}.viewer-wrap{min-height:440px}.viewer{height:380px}.hero h1{font-size:44px}}
+아래 코드로 style.css 전체를 통째로 대체해.
+핵심 수정은 .viewer-wrap, .viewer, .viewer canvas, .viewer > div 부분이야.
+
+:root{
+  --bg:#f4f8ff;
+  --card:#fff;
+  --text:#18304f;
+  --muted:#5f718a;
+  --primary:#2563eb;
+  --primary-dark:#1d4ed8;
+  --line:#dbe7ff;
+  --soft:#eaf2ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:linear-gradient(135deg,#eef6ff,#ffffff);
+  color:var(--text);
+}
+button{font-family:inherit;cursor:pointer}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 6vw;
+}
+.brand{font-weight:800;color:var(--primary)}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav-btn,.secondary,.back,.controls button{
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--text);
+  border-radius:999px;
+  padding:10px 14px;
+}
+.nav-btn:hover,.secondary:hover,.back:hover,.controls button:hover{
+  border-color:var(--primary);
+  color:var(--primary);
+}
+main{min-height:calc(100vh - 120px)}
+.page{display:none;padding:56px 7vw}
+.page.active{display:block}
+.hero{
+  display:grid;
+  grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr);
+  gap:32px;
+  align-items:center;
+}
+.eyebrow{
+  font-size:14px;
+  font-weight:700;
+  color:var(--primary);
+  letter-spacing:.04em;
+}
+.hero h1{
+  font-size:clamp(42px,7vw,76px);
+  line-height:1.05;
+  margin:12px 0;
+}
+.lead,.section-intro{
+  font-size:18px;
+  line-height:1.75;
+  color:var(--muted);
+  max-width:780px;
+}
+.primary{
+  border:0;
+  background:var(--primary);
+  color:#fff;
+  border-radius:999px;
+  padding:13px 20px;
+  font-weight:700;
+}
+.primary:hover{background:var(--primary-dark)}
+.hero-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:24px;
+}
+.hero-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:30px;
+  box-shadow:0 20px 50px rgba(37,99,235,.12);
+}
+.molecule-icon{
+  font-size:62px;
+  background:var(--soft);
+  width:100px;
+  height:100px;
+  border-radius:30px;
+  display:grid;
+  place-items:center;
+}
+.hero-card ul{line-height:2}
+.concept-grid,.protein-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  margin:28px 0;
+}
+.concept-card,.protein-card,.summary-box{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 12px 30px rgba(24,48,79,.06);
+}
+.concept-card span{color:var(--primary);font-weight:800}
+.concept-card p,.protein-card p,.summary-box p{
+  color:var(--muted);
+  line-height:1.7;
+}
+.center{
+  display:block;
+  margin:30px auto 0;
+}
+.protein-card{
+  min-height:240px;
+  text-align:left;
+  transition:.18s transform,.18s box-shadow;
+}
+.protein-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 40px rgba(37,99,235,.16);
+  border-color:#a9c4ff;
+}
+.protein-card .emoji{font-size:44px}
+.protein-card h3{
+  font-size:24px;
+  margin:12px 0 8px;
+}
+.tag{
+  display:inline-block;
+  background:var(--soft);
+  color:var(--primary);
+  border-radius:999px;
+  padding:6px 10px;
+  font-size:13px;
+  font-weight:700;
+}
+.viewer-layout{
+  display:grid;
+  grid-template-columns:330px minmax(0,1fr);
+  gap:22px;
+  align-items:start;
+}
+.protein-info{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:24px;
+}
+.info-box{
+  background:var(--soft);
+  border-radius:18px;
+  padding:16px;
+  margin:20px 0;
+}
+.controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:18px 0;
+}
+.text-link{
+  color:var(--primary);
+  font-weight:700;
+  text-decoration:none;
+}
+/* 여기부터 3D 뷰어 위치 오류 수정 핵심 */
+.viewer-wrap{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:14px;
+  min-height:600px;
+  overflow:hidden;
+}
+.viewer{
+  position:relative;
+  width:100%;
+  height:540px;
+  border-radius:18px;
+  background:#f7fbff;
+  overflow:hidden;
+  isolation:isolate;
+}
+/* 3Dmol.js가 만드는 내부 요소를 뷰어 박스 안에 고정 */
+.viewer canvas,
+.viewer > div,
+.viewer .canvas3Dmol,
+.viewer .glviewer{
+  position:absolute !important;
+  top:0 !important;
+  left:0 !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:100% !important;
+  max-height:100% !important;
+  border-radius:18px;
+}
+/* 혹시 body 쪽으로 빠져나가는 3Dmol 요소 방지 */
+canvas{
+  max-width:100%;
+}
+.viewer-help{
+  color:var(--muted);
+  font-size:14px;
+  text-align:center;
+  margin-top:10px;
+}
+.back{margin-bottom:18px}
+footer{
+  text-align:center;
+  color:var(--muted);
+  padding:24px;
+}
+@media(max-width:860px){
+  .hero,.viewer-layout{
+    grid-template-columns:1fr;
+  }
+  .concept-grid,.protein-grid{
+    grid-template-columns:1fr;
+  }
+  .topbar{
+    align-items:flex-start;
+    gap:10px;
+    flex-direction:column;
+  }
+  .page{
+    padding:36px 5vw;
+  }
+  .viewer-wrap{
+    min-height:440px;
+  }
+  .viewer{
+    height:380px;
+  }
+  .hero h1{
+    font-size:44px;
+  }
+}
+
