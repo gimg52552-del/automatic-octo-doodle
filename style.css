@@ -1,9 +1,6 @@
-아래 코드로 style.css 전체를 통째로 대체해.
-핵심 수정은 .viewer-wrap, .viewer, .viewer canvas, .viewer > div 부분이야.
-
 :root{
   --bg:#f4f8ff;
-  --card:#fff;
+  --card:#ffffff;
   --text:#18304f;
   --muted:#5f718a;
   --primary:#2563eb;
@@ -11,19 +8,26 @@
   --line:#dbe7ff;
   --soft:#eaf2ff;
 }
+
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:linear-gradient(135deg,#eef6ff,#ffffff);
   color:var(--text);
 }
-button{font-family:inherit;cursor:pointer}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
 .topbar{
   position:sticky;
   top:0;
   z-index:20;
-  background:rgba(255,255,255,.86);
+  background:rgba(255,255,255,.92);
   backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line);
   display:flex;
@@ -31,67 +35,124 @@ button{font-family:inherit;cursor:pointer}
   align-items:center;
   padding:14px 6vw;
 }
-.brand{font-weight:800;color:var(--primary)}
-nav{display:flex;gap:8px;flex-wrap:wrap}
-.nav-btn,.secondary,.back,.controls button{
+
+.brand{
+  font-weight:800;
+  color:var(--primary);
+  font-size:20px;
+}
+
+nav{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.nav-btn,
+.back,
+.controls button{
   border:1px solid var(--line);
-  background:#fff;
+  background:#ffffff;
   color:var(--text);
   border-radius:999px;
   padding:10px 14px;
+  font-weight:600;
 }
-.nav-btn:hover,.secondary:hover,.back:hover,.controls button:hover{
+
+.nav-btn:hover,
+.back:hover,
+.controls button:hover{
   border-color:var(--primary);
   color:var(--primary);
 }
-main{min-height:calc(100vh - 120px)}
-.page{display:none;padding:56px 7vw}
-.page.active{display:block}
-.hero{
-  display:grid;
-  grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr);
-  gap:32px;
-  align-items:center;
-}
-.eyebrow{
-  font-size:14px;
-  font-weight:700;
-  color:var(--primary);
-  letter-spacing:.04em;
-}
-.hero h1{
-  font-size:clamp(42px,7vw,76px);
-  line-height:1.05;
-  margin:12px 0;
-}
-.lead,.section-intro{
-  font-size:18px;
-  line-height:1.75;
-  color:var(--muted);
-  max-width:780px;
-}
+
 .primary{
   border:0;
   background:var(--primary);
-  color:#fff;
+  color:#ffffff;
   border-radius:999px;
   padding:13px 20px;
-  font-weight:700;
+  font-weight:800;
+  box-shadow:0 10px 24px rgba(37,99,235,.22);
 }
-.primary:hover{background:var(--primary-dark)}
+
+.primary:hover{
+  background:var(--primary-dark);
+}
+
+.secondary{
+  border:2px solid var(--primary);
+  background:#ffffff;
+  color:var(--primary);
+  border-radius:999px;
+  padding:12px 19px;
+  font-weight:800;
+  box-shadow:0 10px 24px rgba(37,99,235,.13);
+}
+
+.secondary:hover{
+  background:var(--primary);
+  color:#ffffff;
+}
+
+main{
+  min-height:calc(100vh - 120px);
+}
+
+.page{
+  display:none;
+  padding:56px 7vw;
+}
+
+.page.active{
+  display:block;
+}
+
+.hero{
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);
+  gap:32px;
+  align-items:center;
+  min-height:520px;
+}
+
+.eyebrow{
+  font-size:15px;
+  font-weight:800;
+  color:var(--primary);
+  letter-spacing:.03em;
+}
+
+.hero h1{
+  font-size:clamp(46px,7vw,76px);
+  line-height:1.05;
+  margin:12px 0 24px;
+  word-break:keep-all;
+}
+
+.lead,
+.section-intro{
+  font-size:18px;
+  line-height:1.75;
+  color:var(--muted);
+  max-width:820px;
+}
+
 .hero-actions{
   display:flex;
   gap:12px;
   flex-wrap:wrap;
-  margin-top:24px;
+  margin-top:28px;
 }
+
 .hero-card{
-  background:var(--card);
+  background:#ffffff;
   border:1px solid var(--line);
   border-radius:28px;
-  padding:30px;
-  box-shadow:0 20px 50px rgba(37,99,235,.12);
+  padding:34px;
+  box-shadow:0 20px 50px rgba(37,99,235,.13);
 }
+
 .molecule-icon{
   font-size:62px;
   background:var(--soft);
@@ -100,45 +161,75 @@ main{min-height:calc(100vh - 120px)}
   border-radius:30px;
   display:grid;
   place-items:center;
+  margin-bottom:20px;
 }
-.hero-card ul{line-height:2}
-.concept-grid,.protein-grid{
+
+.hero-card h2{
+  font-size:28px;
+  margin:0 0 18px;
+}
+
+.hero-card ul{
+  line-height:2;
+  font-size:17px;
+}
+
+.concept-grid,
+.protein-grid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:18px;
-  margin:28px 0;
+  margin:30px 0;
 }
-.concept-card,.protein-card,.summary-box{
-  background:var(--card);
+
+.concept-card,
+.protein-card,
+.summary-box{
+  background:#ffffff;
   border:1px solid var(--line);
   border-radius:22px;
   padding:24px;
-  box-shadow:0 12px 30px rgba(24,48,79,.06);
+  box-shadow:0 12px 30px rgba(24,48,79,.07);
 }
-.concept-card span{color:var(--primary);font-weight:800}
-.concept-card p,.protein-card p,.summary-box p{
+
+.concept-card span{
+  color:var(--primary);
+  font-weight:900;
+}
+
+.concept-card p,
+.protein-card p,
+.summary-box p{
   color:var(--muted);
   line-height:1.7;
 }
+
 .center{
   display:block;
-  margin:30px auto 0;
+  margin:32px auto 0;
 }
+
 .protein-card{
   min-height:240px;
   text-align:left;
   transition:.18s transform,.18s box-shadow;
 }
+
 .protein-card:hover{
   transform:translateY(-4px);
   box-shadow:0 18px 40px rgba(37,99,235,.16);
   border-color:#a9c4ff;
 }
-.protein-card .emoji{font-size:44px}
+
+.protein-card .emoji{
+  font-size:44px;
+}
+
 .protein-card h3{
   font-size:24px;
   margin:12px 0 8px;
 }
+
 .tag{
   display:inline-block;
   background:var(--soft);
@@ -146,46 +237,52 @@ main{min-height:calc(100vh - 120px)}
   border-radius:999px;
   padding:6px 10px;
   font-size:13px;
-  font-weight:700;
+  font-weight:800;
 }
+
 .viewer-layout{
   display:grid;
   grid-template-columns:330px minmax(0,1fr);
   gap:22px;
   align-items:start;
 }
+
 .protein-info{
-  background:#fff;
+  background:#ffffff;
   border:1px solid var(--line);
   border-radius:24px;
   padding:24px;
 }
+
 .info-box{
   background:var(--soft);
   border-radius:18px;
   padding:16px;
   margin:20px 0;
 }
+
 .controls{
   display:flex;
   flex-wrap:wrap;
   gap:8px;
   margin:18px 0;
 }
+
 .text-link{
   color:var(--primary);
-  font-weight:700;
+  font-weight:800;
   text-decoration:none;
 }
-/* 여기부터 3D 뷰어 위치 오류 수정 핵심 */
+
 .viewer-wrap{
-  background:#fff;
+  background:#ffffff;
   border:1px solid var(--line);
   border-radius:24px;
   padding:14px;
   min-height:600px;
   overflow:hidden;
 }
+
 .viewer{
   position:relative;
   width:100%;
@@ -195,7 +292,7 @@ main{min-height:calc(100vh - 120px)}
   overflow:hidden;
   isolation:isolate;
 }
-/* 3Dmol.js가 만드는 내부 요소를 뷰어 박스 안에 고정 */
+
 .viewer canvas,
 .viewer > div,
 .viewer .canvas3Dmol,
@@ -209,56 +306,58 @@ main{min-height:calc(100vh - 120px)}
   max-height:100% !important;
   border-radius:18px;
 }
-/* 혹시 body 쪽으로 빠져나가는 3Dmol 요소 방지 */
+
 canvas{
   max-width:100%;
 }
+
 .viewer-help{
   color:var(--muted);
   font-size:14px;
   text-align:center;
   margin-top:10px;
 }
-.back{margin-bottom:18px}
+
+.back{
+  margin-bottom:18px;
+}
+
 footer{
   text-align:center;
   color:var(--muted);
   padding:24px;
 }
+
 @media(max-width:860px){
-  .hero,.viewer-layout{
+  .hero,
+  .viewer-layout{
     grid-template-columns:1fr;
   }
-  .concept-grid,.protein-grid{
+
+  .concept-grid,
+  .protein-grid{
     grid-template-columns:1fr;
   }
+
   .topbar{
     align-items:flex-start;
     gap:10px;
     flex-direction:column;
   }
+
   .page{
     padding:36px 5vw;
   }
+
   .viewer-wrap{
     min-height:440px;
   }
+
   .viewer{
     height:380px;
   }
+
   .hero h1{
     font-size:44px;
   }
-}
-.secondary{
-  background:#ffffff;
-  color:#2563eb;
-  border:2px solid #2563eb;
-  font-weight:700;
-  box-shadow:0 6px 18px rgba(37,99,235,.12);
-}
-
-.secondary:hover{
-  background:#2563eb;
-  color:#ffffff;
 }
